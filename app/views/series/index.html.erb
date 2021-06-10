@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<% if @series.size > 0 %>
+  <h1>Series</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>No of seasons</th>
+        <th>Director</th>
+        <th>Date of first release</th>
+        <th>Actors</th>
+        <th>Shoot Locations</th>
+        <th>Average Rating</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @series.each do |series| %>
+        <tr>
+          <td><%= series.name %></td>
+          <td><%= series.genre %></td>
+          <td><%= series.no_of_seasons %></td>
+          <td><%= series.director %></td>
+          <td><%= series.date_of_first_release %></td>
+          <td><%= series.actors.collect(&:name).uniq %></td>
+          <td><%= series.shooting_locations.collect(&:city).uniq %></td>
+          <% total_rating = 0 
+              series.reviews.each{|rev| total_rating += rev.stars}
+          %>
+          <td><%= total_rating/(series.reviews.count).to_f %></td>
+          <td><%= link_to 'Show', series %></td>
+          <td><%= link_to 'Edit', edit_series_path(series) %></td>
+          <td><%= link_to 'Destroy', series, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div> <b>No Series with requested filter Present in Syestem, Please try creating a new one from below link </b>b></div>
+<% end %>
+<br>
+
+<%= link_to 'New Series', new_series_path %>

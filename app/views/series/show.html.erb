@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @series.name %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @series.genre %>
+</p>
+
+<p>
+  <strong>No of seasons:</strong>
+  <%= @series.no_of_seasons %>
+</p>
+
+<p>
+  <strong>Director:</strong>
+  <%= @series.director %>
+</p>
+
+<p>
+  <strong>Date of first release:</strong>
+  <%= @series.date_of_first_release %>
+</p>
+
+<%= link_to 'Edit', edit_series_path(@series) %> |
+<%= link_to 'Back', series_index_path %>
